@@ -1,0 +1,48 @@
+version: '2'
+services:
+  streamdc:
+    image: "streamsets/datacollector"
+    container_name: "streamdc"
+    hostname: streamdc
+    restart: always
+    ports:
+      - 18630:18630
+    environment:
+      STREAMSETS_LIBRARIES_EXTRA_DIR: /opt/sdc-extras
+    volumes:
+      - ./dctutorial:/home/sdc/tutorial/origin2
+      - ./dcdata:/data
+      - ./sdcextra:/opt/sdc-extras
+  main_node:
+    image: "datastax/dse-server"
+    container_name: "dse"
+    hostname: dse
+    ports:
+    - "4040:4040"
+    - "7080:7080"
+    - "7199:7199"
+    - "8182:8182"
+    - "8983:8983"
+    - "9042:9042"
+    environment:
+      - DS_LICENSE=accept
+      - CLUSTER_NAME=main
+    # Allow DSE to lock memory with mlock
+    cap_add:
+    - IPC_LOCK
+    ulimits:
+      memlock: -1
+    volumes:
+      - ./dsedata:/var/lib/cassandra/data
+      - ./dseconf:/config
+      - ./dselogs:/var/lib/cassandra/commit_logs
+      - ./dsecache:/var/lib/cassandra/saved_caches
+      - ./dseconf:/etc/dse/conf
+  mysql:
+    image: mysql
+    container_name: "mysql"
+    hostname: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql

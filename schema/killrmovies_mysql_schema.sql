@@ -19,9 +19,9 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+CREATE DATABASE IF NOT EXISTS killrmovies;
 
-# Dump of table _movie_uuid
-# ------------------------------------------------------------
+USE killrmovies;
 
 DROP TABLE IF EXISTS `_movie_uuid`;
 
@@ -34,9 +34,6 @@ CREATE TABLE `_movie_uuid` (
 
 
 
-# Dump of table _user_uuid
-# ------------------------------------------------------------
-
 DROP TABLE IF EXISTS `_user_uuid`;
 
 CREATE TABLE `_user_uuid` (
@@ -48,9 +45,6 @@ CREATE TABLE `_user_uuid` (
 
 
 
-# Dump of table movies
-# ------------------------------------------------------------
-
 DROP TABLE IF EXISTS `movies`;
 
 CREATE TABLE `movies` (
@@ -61,9 +55,6 @@ CREATE TABLE `movies` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-
-# Dump of table ratings
-# ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `ratings`;
 
@@ -77,9 +68,6 @@ CREATE TABLE `ratings` (
 
 
 
-# Dump of table tags
-# ------------------------------------------------------------
-
 DROP TABLE IF EXISTS `tags`;
 
 CREATE TABLE `tags` (
@@ -91,9 +79,6 @@ CREATE TABLE `tags` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
-
-# Dump of table users
-# ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `users`;
 
